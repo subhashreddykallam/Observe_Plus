@@ -4,6 +4,9 @@ import mediapipe as mp
 import os
 
 mp_drawing = mp.solutions.drawing_utils
+greenDrawingSpec = mp_drawing.DrawingSpec((0, 255, 0))
+redDrawingSpec = mp_drawing.DrawingSpec((0, 0, 255))
+whiteDrawingSpec = mp_drawing.DrawingSpec()
 mp_face_detection = mp.solutions.face_detection
 
 
@@ -30,7 +33,6 @@ def gen_frames_student():
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
             if results.detections:
                 for detection in results.detections:
-                    print(mp_face_detection.get_key_point(detection, mp_face_detection.FaceKeyPoint.NOSE_TIP))
                     mp_drawing.draw_detection(image, detection)
             image = image[90:631, 160:1121]
             ret, buffer = cv2.imencode('.jpg', cv2.flip(image, 1))
@@ -57,7 +59,6 @@ def gen_frames_admin():
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
             if results.detections:
                 for detection in results.detections:
-                    print(mp_face_detection.get_key_point(detection, mp_face_detection.FaceKeyPoint.NOSE_TIP))
                     mp_drawing.draw_detection(image, detection)
             ret, buffer = cv2.imencode('.jpg', cv2.flip(image, 1))
             frame = buffer.tobytes()
@@ -85,9 +86,14 @@ def gen_frames_position():
                 for detection in results.detections:
                     p = mp_face_detection.get_key_point(detection, mp_face_detection.FaceKeyPoint.NOSE_TIP)
                     nose = (int(1280*p.x), int(720*p.y))
-                    print(nose)
-                    mp_drawing.draw_detection(image, detection)
-                    image = cv2.arrowedLine(image, nose, (640, 360), (0, 255, 0), 5) 
+                    # print(nose)
+                    if abs(nose[0]-640) > 300 or abs(nose[1]-360) > 165:
+                        image = cv2.arrowedLine(image, nose, (640, 360), (0, 0, 255), 5)
+                        mp_drawing.draw_detection(image, detection, whiteDrawingSpec, redDrawingSpec)
+                    else:
+                        image = cv2.arrowedLine(image, nose, (640, 360), (0, 255, 0), 5)
+                        mp_drawing.draw_detection(image, detection, whiteDrawingSpec, greenDrawingSpec)
+            image = image[90:631, 160:1121]
             ret, buffer = cv2.imencode('.jpg', cv2.flip(image, 1))
             frame = buffer.tobytes()
             yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')

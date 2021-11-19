@@ -3,16 +3,54 @@
 
 <head>
     <title>Live Streaming Demonstration</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/admin.css">
 </head>
 
 <body>
-    <div id="container">
-        <img src="{{ url_for('video_feed_student_position') }}">
+    <nav>
+        <!-- <a href="{{ url_for('index')}}" class="info-text">Stop Capture</a> -->
+    </nav>
+
+    <div class="box box-middle" style="height: auto !important; margin-left: 22%; margin-right: 22%;">
+        <div onload="loader()" style="height: auto !important;">
+            <h1>Adjust your position</h1>
+            <ul id="webcam-notices">
+                <li class="notice-loading loading_detectingDevices" style="display: none;">Detecting your media devices.
+                    Please wait...</li>
+                <li class="notice-loading loading_waitingPermission" style="display: none;">Waiting for your
+                    permission...</li>
+            </ul>
+            <img src="{{ url_for('video_feed_position') }}" style="width: 100%">
+            <div id="webcam-controls" style="display: block;">
+                <select id="webcam-selecter">
+                    <option>FaceTime HD Camera</option>
+                </select>
+                <button id="webcam-launcher" onclick="Start_Test()" id="go_back_bu">Start Test</button>
+                <button id="webcam-launcher" onclick="Go_Back()" id="go_back_bu">Back</button>
+            </div>
+        </div>
     </div>
 
-    <a href="{{ url_for('index')}}">Back</a>
-    <a href="{{ url_for('video_student')}}">Proceed to Test</a>
+
+
+
+
 </body>
+
+<script type="text/javascript">
+    function loader() {
+        alert("Use Camera Permissions");
+    }
+    loader();
+
+    function Start_Test() {
+        var url = "{{url_for('video_student')}}";
+        location.href = url;
+    }
+    function Go_back() {
+        var url = "{{url_for('index')}}";
+        location.href = url;
+    }
+</script>
 
 </html>

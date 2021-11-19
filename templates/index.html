@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Observe+</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha256-/ykJw/wDxMa0AQhHDYfuMEwVb4JHMx9h4jD4XvHqVzU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css"
+        integrity="sha256-/ykJw/wDxMa0AQhHDYfuMEwVb4JHMx9h4jD4XvHqVzU=" crossorigin="anonymous" />
     <link rel="stylesheet" href="../static/index.css">
 </head>
 
@@ -52,7 +53,8 @@
                     </p>
 
                     <div class="btn_wrapper">
-                        <div><button><a href="{{url_for('video_admin')}}" class='btn view_more_btn'>Admin View</a><i class="ri-arrow-right-line"></i></button></div>
+                        <div><button><a href="{{url_for('video_admin')}}" class='btn view_more_btn'>Admin View</a><i
+                                    class="ri-arrow-right-line"></i></button></div>
                         <button class='btn documentation_btn' onclick="redirect()">Student View</button>
                         <!-- <div><button style="text-align: center;"><a href="{{url_for('video_feed_position')}}" class='btn documentation_btn' style="text-align: center">Student View</a></button></div> -->
                     </div>
@@ -75,7 +77,7 @@
 
     <script type="text/javascript">
         function redirect() {
-            var url = "{{url_for('video_feed_position')}}";
+            var url = "{{url_for('video_student_position')}}";
             location.href = url;
         }
     </script>
