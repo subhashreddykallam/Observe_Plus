@@ -3,7 +3,7 @@
 ![GitHub](https://img.shields.io/github/license/vijay9908/Observe_Plus)
 ![GitHub last commit](https://img.shields.io/github/last-commit/vijay9908/Observe_Plus)
 
-#### A video positioning tool with for varied applications.
+#### A video positioning tool for varied applications.
 
 The following are the documentation prepared with all the development steps followed in each phase. 
 
