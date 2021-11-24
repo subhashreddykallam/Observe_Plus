@@ -15,10 +15,9 @@
         <div onload="loader()" style="height: auto !important;">
             <h1>Adjust your position</h1>
             <ul id="webcam-notices">
-                <li class="notice-loading loading_detectingDevices" style="display: none;">Detecting your media devices.
-                    Please wait...</li>
-                <li class="notice-loading loading_waitingPermission" style="display: none;">Waiting for your
-                    permission...</li>
+                <li class="notice-loading loading_detectingDevices" style="display: none;">Detecting your media devices. Please wait...</li>
+                <li class="notice-loading loading_waitingPermission" style="display: none;">Waiting for your permission...
+                </li>
             </ul>
             <img src="{{ url_for('video_feed_position') }}" style="width: 100%">
             <div id="webcam-controls" style="display: block;">
@@ -47,7 +46,8 @@
         var url = "{{url_for('video_student')}}";
         location.href = url;
     }
-    function Go_back() {
+
+    function Go_Back() {
         var url = "{{url_for('index')}}";
         location.href = url;
     }
